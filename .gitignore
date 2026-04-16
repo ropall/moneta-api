@@ -33,7 +33,7 @@ build/
 .vscode/
 
 # Variables de entorno (credenciales, nunca subir)
-.env
+.env-example
 .env.local
 .env.production
 
