@@ -6,7 +6,7 @@ services:
     environment:
       POSTGRES_DB: moneta_db
       POSTGRES_USER: moneta_user
-      POSTGRES_PASSWORD: moneta_pass
+      POSTGRES_PASSWORD: moneta_Nefertiti
     ports:
       - "5432:5432"
     volumes:
@@ -22,7 +22,7 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/moneta_db
       SPRING_DATASOURCE_USERNAME: moneta_user
-      SPRING_DATASOURCE_PASSWORD: moneta011304
+      SPRING_DATASOURCE_PASSWORD: moneta_Nefertiti
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     depends_on:
       - postgres
