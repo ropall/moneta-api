@@ -1,10 +1,10 @@
 package io.acme.moneta.servicios;
+import io.acme.moneta.dominio.enums.Rol;
 import io.acme.moneta.dominio.modelos.Usuario;
 import io.acme.moneta.dto.request.UsuarioRegistroRequest;
 import io.acme.moneta.dto.response.UsuarioResponse;
 import io.acme.moneta.repositorios.UsuarioRepositorio;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,7 +25,8 @@ public class UsuarioServicio {
         nuevoUsuario.setApellido(request.apellido());
         nuevoUsuario.setEmail(request.email());
         nuevoUsuario.setTelefono(request.telefono());
-        nuevoUsuario.setPassword(request.password()); //TODO  aqui encriptaremos las contraseñas mas adelante
+        nuevoUsuario.setPassword(request.password());//TODO  aqui encriptaremos las contraseñas mas adelante
+        nuevoUsuario.setRol(Rol.USER);
 
         //Guardar en la base de datos a traves del repositorio
         Usuario usuarioGuardado = usuarioRepositorio.save(nuevoUsuario);
@@ -36,7 +37,8 @@ public class UsuarioServicio {
                 usuarioGuardado.getNombre(),
                 usuarioGuardado.getApellido(),
                 usuarioGuardado.getEmail(),
-                usuarioGuardado.getTelefono()
+                usuarioGuardado.getTelefono(),
+                usuarioGuardado.getRol()
         );
     }
 

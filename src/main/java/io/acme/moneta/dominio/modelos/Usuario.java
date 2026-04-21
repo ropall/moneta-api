@@ -1,6 +1,7 @@
 package io.acme.moneta.dominio.modelos;
 
 
+import io.acme.moneta.dominio.enums.Rol;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,6 +30,10 @@ public class Usuario {
 
     @Column (nullable = false)
     private String password;
+
+    @Enumerated(EnumType.STRING) //Este es importante para poder guardar en User y no un numero identificador
+    @Column (nullable = false)
+    private Rol rol;
 
 
 }
