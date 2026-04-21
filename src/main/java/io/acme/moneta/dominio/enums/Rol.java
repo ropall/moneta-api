@@ -1,5 +1,6 @@
 package io.acme.moneta.dominio.enums;
 
+
 public enum Rol {
     //Usuario estandar
     USER,
