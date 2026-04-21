@@ -1,0 +1,11 @@
+### Registrar un nuevo usuario
+POST http://localhost:8080/api/v1/usuarios
+Content-Type: application/json
+
+{
+  "nombre": "Juan",
+  "apellido": "Pérez",
+  "email": "juan.perez@email.com",
+  "telefono": "3007869775",
+  "password": "miSuperPassword123"
+}
