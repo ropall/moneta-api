@@ -11,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
+   /* @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 //Desactivamos el CSRF (esto es crucial para que funcionen los POST desde intelliJ o Postman)
@@ -26,6 +26,19 @@ public class SecurityConfig {
 
             return http.build();
 
-    }
+    } */
+   @Bean
+   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+       return http
+               .csrf(AbstractHttpConfigurer::disable)
+               .authorizeHttpRequests(auth -> auth
+                       // Tu ruta original
+                       .requestMatchers("/api/v1/usuarios", "/api/v1/usuarios/**").permitAll()
+                       // 🚨 LA LÍNEA MÁGICA: Permite ver los errores reales
+                       .requestMatchers("/error").permitAll()
+                       .anyRequest().authenticated()
+               )
+               .build();
+   }
 
 }

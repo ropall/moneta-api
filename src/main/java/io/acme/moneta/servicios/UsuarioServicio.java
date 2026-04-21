@@ -38,7 +38,9 @@ public class UsuarioServicio {
                 usuarioGuardado.getApellido(),
                 usuarioGuardado.getEmail(),
                 usuarioGuardado.getTelefono(),
-                usuarioGuardado.getRol()
+                usuarioGuardado.getRol(),
+                usuarioGuardado.getEstado(),
+                usuarioGuardado.getFechaCreacion()
         );
     }
 

@@ -1,15 +1,18 @@
 package io.acme.moneta.dominio.modelos;
 
 
+import io.acme.moneta.dominio.enums.EstadoUsuario;
 import io.acme.moneta.dominio.enums.Rol;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 // La siguiente anotacion es de lombok y nos crea automaticamente los constructores y los getters and setters
 @Data
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "usuarios")
 public class Usuario {
 
     @Id
@@ -35,5 +38,20 @@ public class Usuario {
     @Column (nullable = false)
     private Rol rol;
 
+    @Column (nullable = false, updatable = false)
+    private LocalDateTime fechaCreacion;
 
+    @Enumerated (EnumType.STRING)
+    @Column (nullable = false)
+    private EstadoUsuario estado;
+
+
+    // Metodo que se ejecuta automaticamente antes de guaradar en la BD
+    @PrePersist
+    protected  void enCreacion() {
+        this.fechaCreacion = LocalDateTime.now();
+        if (this.estado == null){
+            this.estado = EstadoUsuario.ACTIVO;
+        }
+    }
 }
