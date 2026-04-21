@@ -26,7 +26,7 @@ public class UsuarioServicio {
         nuevoUsuario.setEmail(request.email());
         nuevoUsuario.setTelefono(request.telefono());
         nuevoUsuario.setPassword(request.password());//TODO  aqui encriptaremos las contraseñas mas adelante
-
+        nuevoUsuario.setRol(Rol.USER);
 
         //Guardar en la base de datos a traves del repositorio
         Usuario usuarioGuardado = usuarioRepositorio.save(nuevoUsuario);
