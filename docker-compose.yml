@@ -1,0 +1,36 @@
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: moneta-postgres
+    environment:
+      POSTGRES_DB: moneta_db
+      POSTGRES_USER: moneta_user
+      POSTGRES_PASSWORD: moneta_Nefertiti
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - moneta-network
+
+  app:
+    build: .
+    container_name: moneta-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/moneta_db
+      SPRING_DATASOURCE_USERNAME: moneta_user
+      SPRING_DATASOURCE_PASSWORD: moneta_Nefertiti
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - postgres
+    networks:
+      - moneta-network
+
+volumes:
+  postgres_data:
+
+networks:
+  moneta-network:
